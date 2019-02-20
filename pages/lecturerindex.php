@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-include("session.php");
+include ('session.php');
 ?>
 <head>
 
@@ -13,21 +13,22 @@ include("session.php");
 
     <title>UCC Tutor Hours</title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -60,6 +61,10 @@ include("session.php");
                         <i class="fa fa-user fa-fw"></i>Hello <?php echo $user_check ?><i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
+                        <li><a href="tutorProfile.html"><i class="fa fa-user fa-fw"></i> Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -85,19 +90,10 @@ include("session.php");
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/pages/index.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="/pages/tutorProfile.php"><i class="fa fa-table fa-fw"></i>Profile</a>
-                        </li>
-                        <li>
-                            <a href="/pages/loghours.php"><i class="fa fa-pencil fa-fw"></i>Log Your Hours</a>
-                        </li>
-                        <li>
-                            <a href="/pages/tables.php"><i class="fa fa-check fa-fw"></i>Logged Hours</a>
-                        </li>
-                        <li>
-                            <a href="https://stripe.com/ie"><i class="fa fa-plus-square fa-fw"></i>Stripe Account</a>
+                            <a href="confirm_hours.php"><i class="fa fa-pencil fa-fw"></i>Tutor Logged Hours</a>
                         </li>
                     </ul>
                 </div>
@@ -109,20 +105,6 @@ include("session.php");
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                </div>
-                <div class="col-lg-3 col-md-6">
-                </div>
-            </div>
-            <!-- /.row -->
-            
-                    <!-- /.panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-clock-o fa-fw"></i> How this works
@@ -138,7 +120,7 @@ include("session.php");
                                             <h4 class="timeline-title">Login</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>Login with your student credentials</p>
+                                            <p>Login with your lecturer credentials</p>
                                         </div>
                                     </div>
                                 </li>
@@ -147,10 +129,10 @@ include("session.php");
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Log your hours</h4>
+                                            <h4 class="timeline-title">Verify tutor hours</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>Go to the 'Log your hours' section of the website and follow the online form to log your tutor hours.</p>
+                                            <p>Go to the 'Tutor Logged Hours' section of the website and verify your tutor hours.</p>
                                         </div>
                                     </div>
                                 </li>
@@ -162,19 +144,7 @@ include("session.php");
                                             <h4 class="timeline-title">Save your</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>Make sure to save all of your details at the end of the form.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Get paid!</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>You will then get paid according to your logged hours at the end of the month through your stripe account.</p>
+                                            <p>Save!</p>
                                         </div>
                                     </div>
                                 </li>
@@ -214,3 +184,4 @@ include("session.php");
 </body>
 
 </html>
+
