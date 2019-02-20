@@ -22,6 +22,7 @@
     "url": "git://github.com/BlackrockDigital/startbootstrap-sb-admin-2.git"
   },
   "dependencies": {
-    "bower": "^1.8.8"
+    "bower": "^1.8.8",
+    "git": "^0.1.5"
   }
 }

@@ -97,7 +97,7 @@ include("session.php");
                             <a href="/pages/tables.php"><i class="fa fa-check fa-fw"></i>Logged Hours</a>
                         </li>
                         <li>
-                            <a href="https://stripe.com/ie"><i class="fa fa-plus-square fa-fw"></i>Stripe Account</a>
+                            <a href="https://dashboard.stripe.com/test/dashboard"><i class="fa fa-plus-square fa-fw"></i>Stripe Account</a>
                         </li>
                     </ul>
                 </div>

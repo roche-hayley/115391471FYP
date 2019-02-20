@@ -87,20 +87,20 @@ include ('session.php');
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
+<li>
+                            <a href="/pages/index.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
                         </li>
                         <li>
-                            <a href="tutorProfile.php"><i class="fa fa-table fa-fw"></i>Profile</a>
+                            <a href="/pages/tutorProfile.php"><i class="fa fa-table fa-fw"></i>Profile</a>
                         </li>
                         <li>
-                            <a href="loghours.php"><i class="fa fa-pencil fa-fw"></i>Log Your Hours</a>
+                            <a href="/pages/loghours.php"><i class="fa fa-pencil fa-fw"></i>Log Your Hours</a>
                         </li>
                         <li>
-                            <a href="tables.php"><i class="fa fa-check fa-fw"></i>Logged Hours</a>
+                            <a href="/pages/tables.php"><i class="fa fa-check fa-fw"></i>Logged Hours</a>
                         </li>
                         <li>
-                            <a href="https://stripe.com/ie"><i class="fa fa-plus-square fa-fw"></i>Stripe Account</a>
+                            <a href="https://dashboard.stripe.com/test/dashboard"><i class="fa fa-plus-square fa-fw"></i>Stripe Account</a>
                         </li>
                     </ul>
                 </div>
