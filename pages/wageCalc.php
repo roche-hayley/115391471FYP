@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php 
+<html>
+<?php
 include ('session.php');
 ?>
 <head>
@@ -11,9 +10,9 @@ include ('session.php');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>UCC Tutor Hours</title>
+    <title>Logged Hours</title>
 
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -29,6 +28,7 @@ include ('session.php');
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -51,7 +51,7 @@ include ('session.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">UCC Tutor Hours</a>
+                <a class="navbar-brand" href="index.html">UCC Tutor Hours</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -61,6 +61,10 @@ include ('session.php');
                         <i class="fa fa-user fa-fw"></i>Hello <?php echo $user_check ?><i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
+                        <li><a href="tutorProfile.html"><i class="fa fa-user fa-fw"></i> Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -86,13 +90,10 @@ include ('session.php');
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="lecturerindex.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
                         </li>
                         <li>
                             <a href="confirm_hours.php"><i class="fa fa-pencil fa-fw"></i>Tutor Logged Hours</a>
-                        </li>
-                        <li>
-                            <a href="confirm_hours.php"><i class="fa fa-pencil fa-fw"></i>Pay with Stripe</a>
                         </li>
                     </ul>
                 </div>
@@ -102,85 +103,92 @@ include ('session.php');
         </nav>
 
         <div id="page-wrapper">
-            <div class="row">
+     <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> How this works
+                            Wage Calculator
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <ul class="timeline">
-                                <li>
-                                    <div class="timeline-badge"><i class="fa fa-check"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Login</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Login with your lecturer credentials</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge warning"><i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Verify tutor hours</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Go to the 'Tutor Logged Hours' section of the website and verify your tutor hours.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge danger"><i class="fa fa-save"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Save your</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Save!</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Total Hours</th>
+                                            <th>Wage</th>
+                                            <th>Total Due (€)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                <!-- https://www.youtube.com/watch?v=bHFoobciCTM -->
+                                <?php
+                                $conn = mysqli_connect("localhost", "root", "albertroad", "fypdatabase");
+                                if ($conn-> connect_error) {
+                                    die("Connection failed:". $conn-> connect_error);
+                                }
+                                // https://stackoverflow.com/questions/20828182/retrieving-data-from-mysql-database-using-session-username 
+                                $sql = "SELECT SUM(TOTAL_HOURS), WAGE, SUM(TOTAL_HOURS)*WAGE FROM LOGGED_HOURS";
+                                $result = $conn-> query($sql);
+                                
+                                if ($result-> num_rows > 0) {
+                                    while ($row = $result-> fetch_assoc()) {
+                                        echo "<tr><td>".$row["SUM(TOTAL_HOURS)"]."</td><td>".$row["WAGE"]."</td><td>".$row["SUM(TOTAL_HOURS)*WAGE"]."</td></tr>";
+                                       }
+                                } 
+                                else {
+                                    echo "0 result";
+                                }
+                                
+                                $conn-> close();
+                                ?>
+                                </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
                     </div>
+                    <form action="your-server-side-code" method="POST">
+                        <script
+                          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                          data-key="pk_test_NedYO6UmQgV6vlcxEyMrQ4Yn"
+                          data-amount="999"
+                          data-name="hayley-roche-fyp"
+                          data-description="Widget"
+                          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                          data-locale="auto"
+                          data-currency="eur">
+                        </script>
+                      </form>
                     <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-8 -->
-               
-                        
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
+                <!-- /.col-lg-6 -->
     <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="FinalYearProjectBootstrap/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="FinalYearProjectBootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="FinalYearProjectBootstrap/vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="FinalYearProjectBootstrap/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="FinalYearProjectBootstrap/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="FinalYearProjectBootstrap/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="FinalYearProjectBootstrap/dist/js/sb-admin-2.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
 
 </body>
-
-</html>
-
+    </html>

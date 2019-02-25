@@ -152,7 +152,6 @@ include ('session.php');
                                     while ($row = $result-> fetch_assoc()) {
                                         echo "<tr><td>".$row["STUDENT_ID"]."</td><td>".$row["STUDENT_NAME"]."</td><td>".$row["WEEK"]."</td><td>".$row["DATE_OF_TUT"]."</td><td>".$row["COURSE_CODE"]."</td><td>".$row["LECTURER"]."</td><td>".$row["LOCATION"]."</td><td>".$row["TUT_TIME"]."</td><td>".$row["GROUP_LETTER"]."</td><td>".$row["TOTAL_HOURS"]."</td></tr>";
                                     }
-                                    echo "table";
                                 } 
                                 else {
                                     echo "0 result";

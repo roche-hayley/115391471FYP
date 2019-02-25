@@ -105,7 +105,7 @@ include ('session.php');
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Your Tutor's Logged Hours</h1>
+                    <h1 class="page-header">Previously Logged Hours</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -138,14 +138,13 @@ include ('session.php');
                                     die("Connection failed:". $conn-> connect_error);
                                 }
                                 // https://stackoverflow.com/questions/20828182/retrieving-data-from-mysql-database-using-session-username 
-                                $sql = "SELECT STUDENT_ID, STUDENT_NAME, WEEK, DATE_OF_TUT, COURSE_CODE, LECTURER, LOCATION, TUT_TIME, GROUP_LETTER, TOTAL_HOURS FROM LOGGED_HOURS WHERE LECTURER = 1";
+                                $sql = "SELECT STUDENT_ID, STUDENT_NAME, WEEK, DATE_OF_TUT, COURSE_CODE, LECTURER, LOCATION, TUT_TIME, GROUP_LETTER, TOTAL_HOURS, SUM(TOTAL_HOURS) FROM LOGGED_HOURS";
                                 $result = $conn-> query($sql);
                                 
                                 if ($result-> num_rows > 0) {
                                     while ($row = $result-> fetch_assoc()) {
                                         echo "<tr><td>".$row["STUDENT_ID"]."</td><td>".$row["STUDENT_NAME"]."</td><td>".$row["WEEK"]."</td><td>".$row["DATE_OF_TUT"]."</td><td>".$row["COURSE_CODE"]."</td><td>".$row["LECTURER"]."</td><td>".$row["LOCATION"]."</td><td>".$row["TUT_TIME"]."</td><td>".$row["GROUP_LETTER"]."</td><td>".$row["TOTAL_HOURS"]."</td></tr>";
-                                    }
-                                    echo "table";
+                                       }
                                 } 
                                 else {
                                     echo "0 result";
@@ -156,11 +155,16 @@ include ('session.php');
                                 </tbody>
                             </table>
                         </div>
+                        <input type="submit" value="Confirm Hours - Go To Wage Calculator" class="btn btn-primary btn-lg btn-block" href="wageCalc.php">
+                        <!-- /.panel-body -->
                     </div>
+                    <!-- /.panel -->
                 </div>
-            </div>    
-    </div>
-    <!-- /#wrapper -->
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->          
+            
+           
 
     <!-- jQuery -->
     <script src="FinalYearProjectBootstrap/vendor/jquery/jquery.min.js"></script>
