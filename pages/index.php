@@ -2,6 +2,9 @@
 <html lang="en">
 <?php 
 include("session.php");
+// https://stackoverflow.com/questions/1987579/remove-warning-messages-in-phpS
+ini_set( "display_errors", 0);
+error_reporting(0);
 ?>
 <head>
 
