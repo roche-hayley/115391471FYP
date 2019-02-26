@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <?php
 include ('session.php');
 ?>
@@ -12,7 +13,8 @@ include ('session.php');
 
     <title>Logged Hours</title>
 
-   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -58,13 +60,9 @@ include ('session.php');
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>Hello <?php echo $user_check ?><i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i>Hello <?php echo $user_check ?>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="tutorProfile.html"><i class="fa fa-user fa-fw"></i> Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -89,11 +87,14 @@ include ('session.php');
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li>
-                            <a href="lecturerindex.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
+<li>
+                            <a href="/pages/lecturerindex.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
                         </li>
                         <li>
-                            <a href="confirm_hours.php"><i class="fa fa-pencil fa-fw"></i>Tutor Logged Hours</a>
+                            <a href="/pages/confirm.php"><i class="fa fa-table fa-fw"></i>Confirm Hours</a>
+                        </li>
+                        <li>
+                            <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -105,7 +106,7 @@ include ('session.php');
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Previously Logged Hours</h1>
+                    <h1 class="page-header">Tutor Logged Hours</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -138,13 +139,13 @@ include ('session.php');
                                     die("Connection failed:". $conn-> connect_error);
                                 }
                                 // https://stackoverflow.com/questions/20828182/retrieving-data-from-mysql-database-using-session-username 
-                                $sql = "SELECT STUDENT_ID, STUDENT_NAME, WEEK, DATE_OF_TUT, COURSE_CODE, LECTURER, LOCATION, TUT_TIME, GROUP_LETTER, TOTAL_HOURS, SUM(TOTAL_HOURS) FROM LOGGED_HOURS";
-                                $result = $conn-> query($sql);
+                                $sql = "SELECT STUDENT_ID, STUDENT_NAME, WEEK, DATE_OF_TUT, COURSE_CODE, LECTURER, LOCATION, TUT_TIME, GROUP_LETTER, TOTAL_HOURS FROM LOGGED_HOURS WHERE LECTURER = 1";
+                                $result1 = $conn-> query($sql);
                                 
-                                if ($result-> num_rows > 0) {
-                                    while ($row = $result-> fetch_assoc()) {
+                                if ($result1-> num_rows > 0) {
+                                    while ($row = $result1-> fetch_assoc()) {
                                         echo "<tr><td>".$row["STUDENT_ID"]."</td><td>".$row["STUDENT_NAME"]."</td><td>".$row["WEEK"]."</td><td>".$row["DATE_OF_TUT"]."</td><td>".$row["COURSE_CODE"]."</td><td>".$row["LECTURER"]."</td><td>".$row["LOCATION"]."</td><td>".$row["TUT_TIME"]."</td><td>".$row["GROUP_LETTER"]."</td><td>".$row["TOTAL_HOURS"]."</td></tr>";
-                                       }
+                                    }
                                 } 
                                 else {
                                     echo "0 result";
@@ -155,16 +156,19 @@ include ('session.php');
                                 </tbody>
                             </table>
                         </div>
-                        <input type="submit" value="Confirm Hours - Go To Wage Calculator" class="btn btn-primary btn-lg btn-block" href="wageCalc.php">
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
+                    <input type="submit" value="Confirm Hours - Go To Wage Calculator" class="btn btn-primary btn-lg btn-block" href="wageCalc.php">
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->          
             
            
+
+    </div>
+    <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="FinalYearProjectBootstrap/vendor/jquery/jquery.min.js"></script>
@@ -193,4 +197,6 @@ include ('session.php');
     </script>
 
 </body>
-    </html>
+
+</html>
+

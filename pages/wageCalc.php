@@ -58,17 +58,8 @@ include ('session.php');
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>Hello <?php echo $user_check ?><i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i>Hello <?php echo $user_check ?>
                     </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="tutorProfile.html"><i class="fa fa-user fa-fw"></i> Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
@@ -93,8 +84,12 @@ include ('session.php');
                             <a href="lecturerindex.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
                         </li>
                         <li>
-                            <a href="confirm_hours.php"><i class="fa fa-pencil fa-fw"></i>Tutor Logged Hours</a>
+                            <a href="confirm_hours.php"><i class="fa fa-pencil fa-fw"></i>Confirm Hours</a>
                         </li>
+                        <li>
+                            <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -107,7 +102,7 @@ include ('session.php');
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Wage Calculator
+                            Wage Calculator - hayley-roche
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -115,6 +110,8 @@ include ('session.php');
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th>StudentID</th>
+                                            <th>Student Name</th>
                                             <th>Total Hours</th>
                                             <th>Wage</th>
                                             <th>Total Due (€)</th>
@@ -128,12 +125,12 @@ include ('session.php');
                                     die("Connection failed:". $conn-> connect_error);
                                 }
                                 // https://stackoverflow.com/questions/20828182/retrieving-data-from-mysql-database-using-session-username 
-                                $sql = "SELECT SUM(TOTAL_HOURS), WAGE, SUM(TOTAL_HOURS)*WAGE FROM LOGGED_HOURS";
+                                $sql = "SELECT STUDENT_ID, STUDENT_NAME, SUM(TOTAL_HOURS), WAGE, SUM(TOTAL_HOURS)*WAGE FROM LOGGED_HOURS WHERE LECTURER=1 AND STUDENT_ID=115391471";
                                 $result = $conn-> query($sql);
                                 
                                 if ($result-> num_rows > 0) {
                                     while ($row = $result-> fetch_assoc()) {
-                                        echo "<tr><td>".$row["SUM(TOTAL_HOURS)"]."</td><td>".$row["WAGE"]."</td><td>".$row["SUM(TOTAL_HOURS)*WAGE"]."</td></tr>";
+                                        echo "<tr><td>".$row["STUDENT_ID"]."</td><td>".$row["STUDENT_NAME"]."</td><td>".$row["SUM(TOTAL_HOURS)"]."</td><td>".$row["WAGE"]."</td><td>".$row["SUM(TOTAL_HOURS)*WAGE"]."</td></tr>";
                                        }
                                 } 
                                 else {
@@ -148,12 +145,13 @@ include ('session.php');
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
-                    </div>
-                    <form action="your-server-side-code" method="POST">
+                        
+                        <!-- https://stripe.com/docs/checkout#integration-simple -->
+                        <form action="your-server-side-code" method="POST">
                         <script
                           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                           data-key="pk_test_NedYO6UmQgV6vlcxEyMrQ4Yn"
-                          data-amount="999"
+                          data-amount="4200"
                           data-name="hayley-roche-fyp"
                           data-description="Widget"
                           data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
@@ -161,6 +159,71 @@ include ('session.php');
                           data-currency="eur">
                         </script>
                       </form>
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+                
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Wage Calculator
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>StudentID</th>
+                                            <th>Student Name</th>
+                                            <th>Total Hours</th>
+                                            <th>Wage</th>
+                                            <th>Total Due (€)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                <!-- https://www.youtube.com/watch?v=bHFoobciCTM -->
+                                <?php
+                                $conn = mysqli_connect("localhost", "root", "albertroad", "fypdatabase");
+                                if ($conn-> connect_error) {
+                                    die("Connection failed:". $conn-> connect_error);
+                                }
+                                // https://stackoverflow.com/questions/20828182/retrieving-data-from-mysql-database-using-session-username 
+                                $sql = "SELECT STUDENT_ID, STUDENT_NAME, SUM(TOTAL_HOURS), WAGE, SUM(TOTAL_HOURS)*WAGE FROM LOGGED_HOURS WHERE LECTURER=1 AND STUDENT_ID=115321791";
+                                $result = $conn-> query($sql);
+                                
+                                if ($result-> num_rows > 0) {
+                                    while ($row = $result-> fetch_assoc()) {
+                                        echo "<tr><td>".$row["STUDENT_ID"]."</td><td>".$row["STUDENT_NAME"]."</td><td>".$row["SUM(TOTAL_HOURS)"]."</td><td>".$row["WAGE"]."</td><td>".$row["SUM(TOTAL_HOURS)*WAGE"]."</td></tr>";
+                                       }
+                                } 
+                                else {
+                                    echo "0 result";
+                                }
+                                
+                                $conn-> close();
+                                ?>
+                                </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                        <!-- https://stripe.com/docs/checkout#integration-simple -->
+                        <form action="your-server-side-code" method="POST">
+                        <script
+                          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                          data-key="pk_test_NedYO6UmQgV6vlcxEyMrQ4Yn"
+                          data-amount="2100"
+                          data-name="hayley-roche-fyp"
+                          data-description="Widget"
+                          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                          data-locale="auto"
+                          data-currency="eur">
+                        </script>
+                      </form>
+                    </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-6 -->

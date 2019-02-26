@@ -58,13 +58,8 @@ include ("session.php");
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>Hello <?php echo $user_check ?><i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i>Hello <?php echo $user_check ?>
                     </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li class="divider"></li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
@@ -99,6 +94,9 @@ include ("session.php");
                         </li>
                         <li>
                             <a href="https://dashboard.stripe.com/test/dashboard"><i class="fa fa-plus-square fa-fw"></i>Stripe Account</a>
+                        </li>
+                        <li>
+                            <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                 </div>

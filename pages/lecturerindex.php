@@ -58,13 +58,8 @@ include ('session.php');
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>Hello <?php echo $user_check ?><i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i>Hello <?php echo $user_check ?>
                     </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li class="divider"></li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
@@ -89,10 +84,10 @@ include ('session.php');
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="confirm_hours.php"><i class="fa fa-pencil fa-fw"></i>Tutor Logged Hours</a>
+                            <a href="confirm.php"><i class="fa fa-pencil fa-fw"></i>Confirm Hours</a>
                         </li>
                         <li>
-                            <a href="confirm_hours.php"><i class="fa fa-pencil fa-fw"></i>Pay with Stripe</a>
+                            <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                 </div>
