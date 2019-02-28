@@ -1,6 +1,9 @@
 <html>
 <?php
 include ('session.php');
+// https://stackoverflow.com/questions/1987579/remove-warning-messages-in-phpS
+ini_set( "display_errors", 0);
+error_reporting(0);
 ?>
 <head>
 
@@ -10,7 +13,7 @@ include ('session.php');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Logged Hours</title>
+    <title>Tutorize</title>
 
    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -51,7 +54,7 @@ include ('session.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">UCC Tutor Hours</a>
+                <a class="navbar-brand" href="lecturerindex.php">Tutorize</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -84,7 +87,7 @@ include ('session.php');
                             <a href="lecturerindex.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
                         </li>
                         <li>
-                            <a href="confirm_hours.php"><i class="fa fa-pencil fa-fw"></i>Confirm Hours</a>
+                            <a href="confirm.php"><i class="fa fa-pencil fa-fw"></i>Confirm Hours</a>
                         </li>
                         <li>
                             <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -159,6 +162,7 @@ include ('session.php');
                           data-currency="eur">
                         </script>
                       </form>
+                        <button type="button" class="btn btn-danger">Clear Hours</button>
                     </div>
                     <!-- /.panel -->
                 </div>
@@ -215,7 +219,7 @@ include ('session.php');
                         <script
                           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                           data-key="pk_test_NedYO6UmQgV6vlcxEyMrQ4Yn"
-                          data-amount="2100"
+                          data-amount="3150"
                           data-name="hayley-roche-fyp"
                           data-description="Widget"
                           data-image="https://stripe.com/img/documentation/checkout/marketplace.png"

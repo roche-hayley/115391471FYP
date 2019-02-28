@@ -14,7 +14,7 @@ error_reporting(0);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>UCC Tutor Hours</title>
+    <title>Tutorize</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +53,7 @@ error_reporting(0);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">UCC Tutor Hours</a>
+                <a class="navbar-brand" href="index.php">Tutorize</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -89,7 +89,7 @@ error_reporting(0);
                             <a href="/pages/tutorProfile.php"><i class="fa fa-table fa-fw"></i>Profile</a>
                         </li>
                         <li>
-                            <a href="/pages/loghours.php"><i class="fa fa-pencil fa-fw"></i>Log Your Hours</a>
+                            <a href="loghours.php"><i class="fa fa-pencil fa-fw"></i>Log Your Hours</a>
                         </li>
                         <li>
                             <a href="/pages/tables.php"><i class="fa fa-check fa-fw"></i>Logged Hours</a>

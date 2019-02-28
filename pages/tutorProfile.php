@@ -2,6 +2,9 @@
 <html lang="en">
 <?php 
 include ('session.php');
+// https://stackoverflow.com/questions/1987579/remove-warning-messages-in-phpS
+ini_set( "display_errors", 0);
+error_reporting(0);
 ?>
 <head>
 
@@ -11,7 +14,7 @@ include ('session.php');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tutor Profile</title>
+    <title>Tutorize</title>
 
    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -64,7 +67,7 @@ include ('session.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">UCC Tutor Hours</a>
+                <a class="navbar-brand" href="index.php">Tutorize</a>
             </div>
             <!-- /.navbar-header -->
 
